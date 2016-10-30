@@ -1,2 +1,2 @@
 # videodromm-browser
-Shader browser (react.js
+Shader browser (react.js)
