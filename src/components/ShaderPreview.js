@@ -10,7 +10,7 @@ export default class ShaderPreview extends React.Component {
         <div className="shader-preview">
           <img src={`img/${this.props.image}`}/>
           <h2 className="name">{this.props.name}</h2>
-          <span className="uniforms-count"><img src="/img/uniform.png"/> {this.props.uniforms.length}</span>
+          <span className="uniforms-count">{this.props.uniforms.length}</span>
         </div>
       </Link>
     );

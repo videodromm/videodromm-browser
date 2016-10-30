@@ -25,9 +25,12 @@ export default class ShaderPage extends React.Component {
             <img src={`/img/${shader.image}`}/>
             <h2 className="name">{shader.name}</h2>
           </div>
+          <textarea id="code" rows="20" cols="100">
+            {shader.text}
+          </textarea>
           <section className="description">
-             <strong><Flag code={shader.status} showName="true"/></strong>,
-            source: {shader.text} From <a href={shader.link} target="_blank">{shader.link}</a>.
+             <strong><Flag code={shader.status} showName="true"/></strong>.
+            From <a href={shader.link} target="_blank">{shader.link}</a>.
           </section>
           <section className="uniforms">
             <p><strong>{shader.uniforms.length}</strong> uniforms:</p>
