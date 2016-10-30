@@ -9,6 +9,16 @@ import Flag from './Flag';
 import shaders from '../data/shaders';
 
 export default class ShaderPage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      fragmentshader:""
+    };
+  }
+  shaderChanged(fragmentshader) {
+    console.log('fragmentshader changed');
+    this.setState({fragmentshader});
+  }
   render() {
     const id = this.props.params.id;
     const shader = shaders.filter((shader) => shader.id === id)[0];
@@ -25,9 +35,7 @@ export default class ShaderPage extends React.Component {
             <img src={`/img/${shader.image}`}/>
             <h2 className="name">{shader.name}</h2>
           </div>
-          <textarea id="code" rows="20" cols="100">
-            {shader.text}
-          </textarea>
+          <textarea id="code" rows="20" cols="100" defaultValue={shader.text} onChange={this.shaderChanged.bind(this)}  onPaste={this.shaderChanged.bind(this)} onKeyUp={this.shaderChanged.bind(this)} />
           <section className="description">
              <strong><Flag code={shader.status} showName="true"/></strong>.
             From <a href={shader.link} target="_blank">{shader.link}</a>.

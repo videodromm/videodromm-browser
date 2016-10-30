@@ -12,6 +12,8 @@ import NotFoundPage from './components/NotFoundPage';
 // initialize the server and configure support for ejs templates
 const app = new Express();
 const server = new Server(app);
+const io = require('socket.io')(server);
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -50,7 +52,23 @@ app.get('*', (req, res) => {
     }
   );
 });
-
+// websocket server
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+  // shader
+  socket.on('data', function(msg){
+    console.log('received data: ' + msg);
+    socket.broadcast.emit('data', msg);
+  });  
+  // webp
+  socket.on('webp', function(msg){
+    console.log('received webp: ' + msg);
+    socket.broadcast.emit('webp', msg);
+  });
+});
 // start the server
 const port = process.env.PORT || 3000;
 const env = process.env.NODE_ENV || 'production';
