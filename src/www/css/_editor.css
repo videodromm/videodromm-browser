@@ -1,0 +1,23 @@
+/* EDITOR */
+
+.CodeMirror {
+    font-family: var(--editor-font-family);
+    font-size: 14px;
+    line-height: 1.4;
+    /*height: 100%;*/
+    height: auto;
+    z-index: var(--z-editor);
+}
+
+.CodeMirror-linenumbers {
+    padding: 0 8px;
+}
+
+/* Slightly more padding around the text content */
+.CodeMirror pre {
+    padding: 0 8px;
+}
+
+.CodeMirror-vscrollbar {
+	visibility: hidden;
+}

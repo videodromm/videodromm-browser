@@ -1,0 +1,13 @@
+.canvas-container {
+    display: inline-block;
+    position: relative;
+    border: 1px solid red;
+    height: 240px;
+    width: 320px;
+    float: left;
+}
+
+#code-container {
+    float: right;
+}
+

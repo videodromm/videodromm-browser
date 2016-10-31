@@ -1,0 +1,46 @@
+.ge_panel {
+    cursor: pointer;
+    color: var(--ui-component-text-color);
+    background-color: var(--ui-base-color);
+    font-family: Helvetica, Geneva, sans-serif;
+    font-weight: 100;
+    margin: 0px;
+    padding-top: 5px;
+    z-index: var(--z-menu);
+}
+
+li.ge_panel_tab {
+    cursor: pointer;
+    list-style-type: none;
+    background-color: var(--ui-base-color);
+    color: gray;
+    display: inline;
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+li.ge_panel_tab_active {
+    cursor: pointer;
+    background-color: var(--ui-active-color);
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    list-style-type: none;
+    display: inline;
+    text-align: center;
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+li.ge_panel_tab:hover {
+    color: var(--ui-highlight-color);
+}
+
+a.ge_panel_tab_close {
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;    
+    font-weight: 100;
+}
