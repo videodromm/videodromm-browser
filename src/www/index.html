@@ -63,6 +63,7 @@
             console.log('received: '  + msg);
             $('#code').val(msg);
             $('#code').trigger('change', [false]);
+            window.glslEditor.setContent(msg);
         });
     </script>
     <link type="text/css" rel="stylesheet" href="build/glslEditor.css">
