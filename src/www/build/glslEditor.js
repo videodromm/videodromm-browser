@@ -15564,7 +15564,7 @@ var GlslCanvas = (function () {
         if (canvas.hasAttribute('data-textures')) {
             var imgList = canvas.getAttribute('data-textures').split(',');
             for (var nImg in imgList) {
-                this.setUniform('u_tex' + nImg, imgList[nImg]);
+                this.setUniform('iChannel' + nImg, imgList[nImg]);
             }
         }
 
@@ -17521,7 +17521,7 @@ var Shader = function Shader(main) {
 
     if (this.options.imgs.length > 0) {
         for (var i in this.options.imgs) {
-            this.canvas.setUniform('u_tex' + i, this.options.imgs[i]);
+            this.canvas.setUniform('iChannel' + i, this.options.imgs[i]);
         }
     }
 

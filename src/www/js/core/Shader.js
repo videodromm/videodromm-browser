@@ -21,7 +21,7 @@ export default class Shader {
         
         if (this.options.imgs.length > 0) {
             for (let i in this.options.imgs) {
-                this.canvas.setUniform('u_tex' + i, this.options.imgs[i]);
+                this.canvas.setUniform('iChannel' + i, this.options.imgs[i]);
             }
         }
 
