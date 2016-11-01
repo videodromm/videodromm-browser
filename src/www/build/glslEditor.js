@@ -4528,7 +4528,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       input.wrapper.style.position = "absolute";
       te.style.cssText = "position: fixed; width: 30px; height: 30px; top: " + (e.clientY - 5) +
         "px; left: " + (e.clientX - 5) + "px; z-index: 1000; background: " +
-        (ie ? "rgba(255, 255, 255, .05)" : "transparent") +
+        (ie ? "rgba(0, 0, 0, .05)" : "transparent") +
         "; outline: none; border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=5);";
       if (webkit) var oldScrollY = window.scrollY; // Work around Chrome issue (#2712)
       display.input.focus();
@@ -15517,7 +15517,7 @@ var GlslCanvas = (function () {
         this.paused = false;
 
         // Allow alpha
-        canvas.style.backgroundColor = options.backgroundColor || 'rgba(1,1,1,0)';
+        canvas.style.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
 
         // Load shader
         if (canvas.hasAttribute('data-fragment')) {
@@ -17522,7 +17522,7 @@ var Shader = function Shader(main) {
     this.el.setAttribute('data-fragment', this.options.frag);
 
     this.container.appendChild(this.el);
-    this.canvas = new _glslCanvas2['default'](this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(1,1,1,1)' });
+    this.canvas = new _glslCanvas2['default'](this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(0,0,0,1)' });
 
     if (this.options.imgs.length > 0) {
         for (var i in this.options.imgs) {
