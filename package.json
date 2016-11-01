@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: TODO \" && exit 1",
-    "start": "node_modules/nodemon/bin/nodemon.js index.js"
+    "start": "node_modules/forever/bin/forever index.js"
   },
   "repository": {
     "type": "git",
@@ -55,9 +55,9 @@
     "glslCanvas": "^0.0.17",
     "mocha": "^3.1.2",
     "nodemon": "^1.11.0",
-    "socket.io": "^1.5.1",
-    "socket.io-client": "^1.5.1",
+    "uuid": "^2.0.3",
     "winston": "^2.2.0",
+    "ws": "^1.1.1"
     "xhr": "^2.2.0"
   }
 }

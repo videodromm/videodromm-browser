@@ -24,7 +24,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-        <script src="socket.io/socket.io.js"></script>
+        <script src="js/websocket-lib/ws.js"></script>
     </head>
     <body>
         <div id="glsl_editor"></div>
@@ -43,10 +43,7 @@
     </script>
    <script type="text/javascript">
        $('#glsl_editor').on('change keyup paste', function(evt, resend) {
-            console.log(resend);
             resend = resend === undefined ? true : false;
-            console.log(window.glslEditor.getSuccessfullyCompilingContent());
-            
             if (resend && window.socket) window.socket.emit('data', window.glslEditor.getSuccessfullyCompilingContent());
             try {
                 eval(window.glslEditor.getSuccessfullyCompilingContent());
@@ -56,12 +53,11 @@
         });
     </script>
     <script>
-        window.socket = io();
-        window.socket.on('data', function(msg) {
-            console.log('received: '  + msg);
-            $('#code').val(msg);
+        window.socket = new ws('ws://localhost:8088');
+        window.socket.on('data', function(evt) {
+            $('#code').val(evt.data);
             $('#code').trigger('change', [false]);
-            window.glslEditor.setContent(msg);
+			window.glslEditor.setContent(evt.data);
         });
     </script>
     <link type="text/css" rel="stylesheet" href="build/glslEditor.css">
