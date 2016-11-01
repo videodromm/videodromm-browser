@@ -4528,7 +4528,7 @@ CodeMirror.registerHelper("fold", "indent", function(cm, start) {
       input.wrapper.style.position = "absolute";
       te.style.cssText = "position: fixed; width: 30px; height: 30px; top: " + (e.clientY - 5) +
         "px; left: " + (e.clientX - 5) + "px; z-index: 1000; background: " +
-        (ie ? "rgba(255, 255, 255, .05)" : "transparent") +
+        (ie ? "rgba(0, 0, 0, .05)" : "transparent") +
         "; outline: none; border-width: 0; outline: none; overflow: hidden; opacity: .05; filter: alpha(opacity=5);";
       if (webkit) var oldScrollY = window.scrollY; // Work around Chrome issue (#2712)
       display.input.focus();
@@ -15517,7 +15517,7 @@ var GlslCanvas = (function () {
         this.paused = false;
 
         // Allow alpha
-        canvas.style.backgroundColor = options.backgroundColor || 'rgba(1,1,1,0)';
+        canvas.style.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
 
         // Load shader
         if (canvas.hasAttribute('data-fragment')) {
@@ -15564,7 +15564,7 @@ var GlslCanvas = (function () {
         if (canvas.hasAttribute('data-textures')) {
             var imgList = canvas.getAttribute('data-textures').split(',');
             for (var nImg in imgList) {
-                this.setUniform('u_tex' + nImg, imgList[nImg]);
+                this.setUniform('iChannel' + nImg, imgList[nImg]);
             }
         }
 
@@ -17122,7 +17122,7 @@ var _vendorFileSaverMinJs = _dereq_('./vendor/FileSaver.min.js');
 
 var STORAGE_LAST_EDITOR_CONTENT = 'last-content';
 
-var EMPTY_FRAG_SHADER = '// Author: \n// Title: \n\n#ifdef GL_ES\nprecision mediump float;\n#endif\n\nuniform vec2 iResolution;\nuniform vec2 iMouse;\nuniform float iGlobalTime;\n\nvoid main() {\n    vec2 st = gl_FragCoord.xy/iResolution.xy;\n    st.x *= iResolution.x/iResolution.y;\n\n    st += vec2(.0);\n    vec3 color = vec3(1.);\n    color = vec3(st.x,st.y,abs(sin(iGlobalTime)));\n\n    gl_FragColor = vec4(color,1.0);\n}';
+var EMPTY_FRAG_SHADER = '// Author: \n// Title: \n\n#ifdef GL_ES\nprecision mediump float;\n#endif\n\nuniform vec2 iResolution;\nuniform vec2 iMouse;\nuniform float iGlobalTime;\nuniform sampler2D iChannel0;\nuniform sampler2D iChannel1;\nvoid main() {\n    vec2 st = gl_FragCoord.xy/iResolution.xy;\n    st.x *= iResolution.x/iResolution.y;\nvec4 tex0 = texture2D(iChannel0,st);\nvec4 tex1 = texture2D(iChannel1,st);\n    st += vec2(.0);\n    vec3 color = vec3(1.);\n    color = vec3(st.x,st.y,abs(sin(iGlobalTime)));\n\n    gl_FragColor = vec4(color,1.0);\n}';
 
 var GlslEditor = (function () {
     function GlslEditor(selector, options) {
@@ -17329,6 +17329,11 @@ var GlslEditor = (function () {
             return this.editor.getValue();
         }
     }, {
+        key: 'getSuccessfullyCompilingContent',
+        value: function getSuccessfullyCompilingContent() {
+            return this.editor.getValue();
+        }
+    }, {
         key: 'getAuthor',
         value: function getAuthor() {
             var content = this.getContent();
@@ -17511,17 +17516,17 @@ var Shader = function Shader(main) {
     this.el = document.createElement('canvas');
     this.el.setAttribute('class', 'ge_canvas');
 
-    this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '250');
-    this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '250');
+    this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '640');
+    this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '480');
 
     this.el.setAttribute('data-fragment', this.options.frag);
 
     this.container.appendChild(this.el);
-    this.canvas = new _glslCanvas2['default'](this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(1,1,1,1)' });
+    this.canvas = new _glslCanvas2['default'](this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(0,0,0,1)' });
 
     if (this.options.imgs.length > 0) {
         for (var i in this.options.imgs) {
-            this.canvas.setUniform('u_tex' + i, this.options.imgs[i]);
+            this.canvas.setUniform('iChannel' + i, this.options.imgs[i]);
         }
     }
 
