@@ -1,7 +1,7 @@
 {
-  "name": "websocket-server",
+  "name": "videodromm-browser",
   "version": "0.0.1",
-  "description": "A simple websocket server",
+  "description": "Live shader editor with websockets server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: TODO \" && exit 1",
@@ -9,19 +9,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jarpi/websocket-server"
+    "url": "https://github.com/videodromm/videodromm-browser"
   },
   "keywords": [
     "websocket",
     "nodejs",
     "javascript"
   ],
-  "author": "jarpi",
-  "license": "Unlicense",
+  "author": "Patricio Gonzalez Vivo,jarpi,brucelane,azopcorp",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jarpi/websocket-server/issues"
+    "url": "https://github.com/videodromm/videodromm-browser/issues"
   },
-  "homepage": "https://github.com/jarpi/websocket-server",
+  "homepage": "http://videodromm.github.io/documentation/",
   "dependencies": {
     "express": "^4.14.0",
     "nodemon": "^1.11.0",
