@@ -17122,7 +17122,7 @@ var _vendorFileSaverMinJs = _dereq_('./vendor/FileSaver.min.js');
 
 var STORAGE_LAST_EDITOR_CONTENT = 'last-content';
 
-var EMPTY_FRAG_SHADER = '// Author: \n// Title: \n\n#ifdef GL_ES\nprecision mediump float;\n#endif\n\nuniform vec2 iResolution;\nuniform vec2 iMouse;\nuniform float iGlobalTime;\n\nvoid main() {\n    vec2 st = gl_FragCoord.xy/iResolution.xy;\n    st.x *= iResolution.x/iResolution.y;\n\n    st += vec2(.0);\n    vec3 color = vec3(1.);\n    color = vec3(st.x,st.y,abs(sin(iGlobalTime)));\n\n    gl_FragColor = vec4(color,1.0);\n}';
+var EMPTY_FRAG_SHADER = '// Author: \n// Title: \n\n#ifdef GL_ES\nprecision mediump float;\n#endif\n\nuniform vec2 iResolution;\nuniform vec2 iMouse;\nuniform float iGlobalTime;\nuniform sampler2D iChannel0;\nuniform sampler2D iChannel1;\nvoid main() {\n    vec2 st = gl_FragCoord.xy/iResolution.xy;\n    st.x *= iResolution.x/iResolution.y;\nvec4 tex0 = texture2D(iChannel0,st);\nvec4 tex1 = texture2D(iChannel1,st);\n    st += vec2(.0);\n    vec3 color = vec3(1.);\n    color = vec3(st.x,st.y,abs(sin(iGlobalTime)));\n\n    gl_FragColor = vec4(color,1.0);\n}';
 
 var GlslEditor = (function () {
     function GlslEditor(selector, options) {
@@ -17329,6 +17329,11 @@ var GlslEditor = (function () {
             return this.editor.getValue();
         }
     }, {
+        key: 'getSuccessfullyCompilingContent',
+        value: function getSuccessfullyCompilingContent() {
+            return this.editor.getValue();
+        }
+    }, {
         key: 'getAuthor',
         value: function getAuthor() {
             var content = this.getContent();
@@ -17511,8 +17516,8 @@ var Shader = function Shader(main) {
     this.el = document.createElement('canvas');
     this.el.setAttribute('class', 'ge_canvas');
 
-    this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '250');
-    this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '250');
+    this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '640');
+    this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '480');
 
     this.el.setAttribute('data-fragment', this.options.frag);
 

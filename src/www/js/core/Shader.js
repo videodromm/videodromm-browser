@@ -10,21 +10,19 @@ export default class Shader {
         this.el = document.createElement('canvas');
         this.el.setAttribute('class', 'ge_canvas');
 
-        this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '250');
-        this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '250');
+        this.el.setAttribute('width', this.options.canvas_width || this.options.canvas_size || '640');
+        this.el.setAttribute('height', this.options.canvas_height || this.options.canvas_size || '480');
 
         this.el.setAttribute('data-fragment', this.options.frag);
 
         this.container.appendChild(this.el);
-        this.canvas = new GlslCanvas(this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(1,1,1,1)' });
-        
-        
+        this.canvas = new GlslCanvas(this.el, { premultipliedAlpha: false, preserveDrawingBuffer: true, backgroundColor: 'rgba(0,0,0,1)' });
+              
         if (this.options.imgs.length > 0) {
             for (let i in this.options.imgs) {
                 this.canvas.setUniform('iChannel' + i, this.options.imgs[i]);
             }
         }
-
 
         if (main.options.canvas_draggable || main.options.canvas_resizable || main.options.canvas_snapable) {
             subscribeInteractiveDom(this.el, { 

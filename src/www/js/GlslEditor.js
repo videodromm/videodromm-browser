@@ -33,14 +33,18 @@ precision mediump float;
 uniform vec2 iResolution;
 uniform vec2 iMouse;
 uniform float iGlobalTime;
+uniform sampler2D iChannel0;
+uniform sampler2D iChannel1;
 
 void main() {
     vec2 st = gl_FragCoord.xy/iResolution.xy;
     st.x *= iResolution.x/iResolution.y;
+	vec4 tex0 = texture2D(iChannel0,st);
+    vec4 tex1 = texture2D(iChannel1,st);
 
     st += vec2(.0);
     vec3 color = vec3(1.);
-    color = vec3(st.x,st.y,abs(sin(iGlobalTime)));
+    color = vec3(st.x,st.y,tex0.x);
 
     gl_FragColor = vec4(color,1.0);
 }`;
@@ -242,6 +246,10 @@ export default class GlslEditor {
     }
 
     getContent() {
+        return this.editor.getValue();
+    }
+
+    getSuccessfullyCompilingContent() {
         return this.editor.getValue();
     }
 
