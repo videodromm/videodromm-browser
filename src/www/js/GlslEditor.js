@@ -21,8 +21,6 @@ import { subscribeMixin } from './tools/mixin';
 // 3er Parties
 import { saveAs } from './vendor/FileSaver.min.js';
 
- import "socket.io/socket.io.js";
-
 const EMPTY_FRAG_SHADER = `// Author: 
 // Title: 
 
