@@ -28,8 +28,8 @@ const EMPTY_FRAG_SHADER = `// Author:
 precision mediump float;
 #endif
 
-uniform vec2 iResolution;
-uniform vec2 iMouse;
+uniform vec3 iResolution;
+uniform vec4 iMouse;
 uniform float iGlobalTime;
 uniform sampler2D iChannel0;
 uniform sampler2D iChannel1;
