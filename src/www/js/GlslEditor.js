@@ -250,9 +250,9 @@ export default class GlslEditor {
 
     getSuccessfullyCompilingContent() {
         if (this.shader && this.shader.canvas && this.shader.canvas.isValid) {
-            console.log("before " + this.validShaderText);
             this.validShaderText = this.editor.getValue();
-            console.log("after " + this.validShaderText);
+        } else {
+            this.validShaderText = '';
         }
         return this.validShaderText;
     }

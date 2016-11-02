@@ -44,17 +44,26 @@
    <script type="text/javascript">
        $('#glsl_editor').on('change keyup paste', function(evt, resend) {
             resend = resend === undefined ? true : false;
-            if (resend && window.socket) window.socket.emit('data', window.glslEditor.getSuccessfullyCompilingContent());
+            if (resend && window.socket) {
+                var shaderText = window.glslEditor.getSuccessfullyCompilingContent();
+                if (shaderText.length > 0) {
+                    console.log('frag is valid, sending');
+                    window.socket.emit('frag', shaderText);
+                } else {
+                    console.log('frag is not valid, not sending');
+                } 
+            } 
+            /* why this?
             try {
                 eval(window.glslEditor.getSuccessfullyCompilingContent());
             } catch (e) {
                 console.log('Error while trying to parse:' + window.glslEditor.getSuccessfullyCompilingContent());
-            }
+            }*/
         });
     </script>
     <script>
         window.socket = new ws('ws://localhost:8088');
-        window.socket.on('data', function(evt) {
+        window.socket.on('frag', function(evt) {
             $('#code').val(evt.data);
             $('#code').trigger('change', [false]);
 			window.glslEditor.setContent(evt.data);
