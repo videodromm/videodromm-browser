@@ -249,8 +249,10 @@ export default class GlslEditor {
     }
 
     getSuccessfullyCompilingContent() {
-        if (this.shader && this.shader.canvas && this.main.shader.canvas.isValid) {
-            this.validShaderText = JSON.stringify( this.editor.getValue() );
+        if (this.shader && this.shader.canvas && this.shader.canvas.isValid) {
+            console.log("before " + this.validShaderText);
+            this.validShaderText = this.editor.getValue();
+            console.log("after " + this.validShaderText);
         }
         return this.validShaderText;
     }
