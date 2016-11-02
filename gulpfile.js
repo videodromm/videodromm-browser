@@ -41,14 +41,14 @@ gulp.task('css', function () {
         .pipe(sourcemaps.init())
         .pipe(postcss(plugins))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build'))
+        .pipe(gulp.dest('./src/www/build'))
         .pipe(livereload());
 });
 
 // Build Javascripts
 gulp.task('js', function () {
     var browserify = require('browserify');
-    var shim = require('browserify-shim');
+    // not working on Windows var shim = require('browserify-shim');
     var babelify = require('babelify');
     var source = require('vinyl-source-stream');
     var buffer = require('vinyl-buffer');
@@ -59,8 +59,7 @@ gulp.task('js', function () {
         standalone: 'GlslEditor',
         debug: true,
         transform: [
-            babelify.configure({ optional: ['runtime'] }),
-            shim
+            babelify.configure({ optional: ['runtime'] })// not working on Windows ,shim
         ]
     });
 
@@ -74,7 +73,7 @@ gulp.task('js', function () {
             // .pipe(uglify())
             // .on('error', gutil.log)
         // .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./build'));
+        .pipe(gulp.dest('./src/www/build'));
 });
 
 // Rerun the task when a file changes

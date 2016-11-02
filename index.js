@@ -18,7 +18,7 @@ wss.on('connection', function(socket){
     console.log('user disconnected');
   });
   socket.on('message', function(msg){
-    console.log('Message reveiced');
+    console.log('Message received');
     wss.broadcast(msg, socket.id);
   });
 });
