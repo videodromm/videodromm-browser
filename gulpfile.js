@@ -8,8 +8,8 @@ var plumber = require('gulp-plumber');
 var sourcemaps = require('gulp-sourcemaps');
 
 var paths = {
-    styles: 'src/www/css/**/*.css',
-    scripts: 'src/www/js/**/*.js'
+    styles: 'src/glslEditor/src/css/**/*.css',
+    scripts: 'src/glslEditor/src/js/**/*.js'
 };
 
 // Build stylesheets
@@ -36,7 +36,7 @@ gulp.task('css', function () {
         reporter()
     ];
 
-    return gulp.src('./src/www/css/glslEditor.css')
+    return gulp.src('./src/glslEditor/src/css/glslEditor.css')
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(postcss(plugins))
@@ -55,7 +55,7 @@ gulp.task('js', function () {
     // var uglify = require('gulp-uglify');
 
     var bundle = browserify({
-        entries: 'src/www/js/GlslEditor.js',
+        entries: 'src/glslEditor/src/js/GlslEditor.js',
         standalone: 'GlslEditor',
         debug: true,
         transform: [
