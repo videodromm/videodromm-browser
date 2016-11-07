@@ -33,14 +33,12 @@
   <ItemGroup>
     <Compile Include="index.js" />
     <Compile Include="bin\www" />
-    <Compile Include="src\www\build\glslEditor.js" />
+    <Compile Include="src\www\glslEditor\build\glslEditor.js" />
     <Compile Include="src\www\js\websocket-lib\ws.js" />
     <Content Include="package.json" />
-
     <None Include="videodromm-browser Deploy.pubxml" />
-    <Content Include="src\www\build\glslEditor.css" />
     <Content Include="src\www\favicon.ico" />
-
+    <Content Include="src\www\glslEditor\build\glslEditor.css" />
     <Content Include="src\www\img\anim131.jpg" />
     <Content Include="src\www\img\videodromm-logo.png" />
     <Content Include="src\www\index.html" />
@@ -49,9 +47,10 @@
     <Folder Include="bin\" />
     <Folder Include="src\" />
     <Folder Include="src\www\" />
-    <Folder Include="src\www\build\" />
     <Folder Include="src\www\css\" />
     <Folder Include="src\www\frag\" />
+    <Folder Include="src\www\glslEditor\" />
+    <Folder Include="src\www\glslEditor\build\" />
     <Folder Include="src\www\img\" />
     <Folder Include="src\www\js\" />
     <Folder Include="src\www\js\core\" />
