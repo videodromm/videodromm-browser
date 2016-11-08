@@ -62,11 +62,18 @@
         });
     </script>
     <script>
-        window.socket = new ws('ws://localhost:8088');
+      window.socket = new ws('ws://' + window.location.hostname + ':8088');
         window.socket.on('frag', function(evt) {
             $('#code').val(evt.data);
             $('#code').trigger('change', [false]);
-			window.glslEditor.setContent(evt.data);
+            var shaderText = evt.data;
+            shaderText = shaderText.replace(/3 iR/gm, '2 u_r');
+            shaderText = shaderText.replace(/iR/gm, 'u_r');
+            shaderText = shaderText.replace(/iChannel/gm, 'u_tex');
+            shaderText = shaderText.replace(/4 iMouse/gm, '2 u_mouse');
+            shaderText = shaderText.replace(/iM/gm, 'u_m');
+            shaderText = shaderText.replace(/iGlobalTime/gm, 'u_time');
+            window.glslEditor.setContent(shaderText);
         });
     </script>
     <link type="text/css" rel="stylesheet" href="glslEditor/build/glslEditor.css">
