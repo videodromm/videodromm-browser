@@ -30,6 +30,6 @@ wss.broadcast = function(msg, sender) {
     });
 }*/
 
-http.listen(process.env.port || 8080, function(){
+http.listen(process.env.port || 7070, function(){
     winston.info('Application server running!');
 });
