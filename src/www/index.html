@@ -48,18 +48,15 @@
                 var shaderText = window.glslEditor.getSuccessfullyCompilingContent();
                 if (shaderText.length > 0) {
                     console.log('frag is valid, sending');
-                    window.socket.emit('frag', shaderText);
+					// Convert it to a base64 string
+					var cvn = document.getElementsByClassName('ge_canvas')[0];
+					shader64Str = cvn.toDataURL('image/jpeg');
+                    window.socket.emit('frag', shader64Str);
                 } else {
                     console.log('frag is not valid, not sending');
-                } 
-            } 
-            /* why this?
-            try {
-                eval(window.glslEditor.getSuccessfullyCompilingContent());
-            } catch (e) {
-                console.log('Error while trying to parse:' + window.glslEditor.getSuccessfullyCompilingContent());
-            }*/
-        });
+                }
+            }
+       });
     </script>
     <script>
       window.socket = new ws('ws://' + window.location.hostname + ':8088');
