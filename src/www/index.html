@@ -28,6 +28,7 @@
     </head>
     <body>
         <div id="glsl_editor"></div>
+        <canvas id="c" width="300" height="300"></canvas>
     </body>
     <script type="text/javascript">
     window.requestAnimFrame = (function(){
@@ -39,26 +40,32 @@
           function(/* function */ callback, /* DOMElement */ element){
             window.setTimeout(callback, 1000 / 60);
           };
-})();
+    })();
     </script>
+
    <script type="text/javascript">
+           
        $('#glsl_editor').on('change keyup paste', function(evt, resend) {
-            resend = resend === undefined ? true : false;
+           resend = resend === undefined ? true : false;
             if (resend && window.socket) {
                 var shaderText = window.glslEditor.getSuccessfullyCompilingContent();
                 if (shaderText.length > 0) {
                     console.log('frag is valid, sending');
+					// Convert it to a base64 string
+					//var cvn = document.getElementsByClassName('ge_canvas')[0];
+					//shader64Str = cvn.toDataURL('image/jpeg');
                     window.socket.emit('frag', shaderText);
                 } else {
                     console.log('frag is not valid, not sending');
-                } 
-            } 
-            /* why this?
-            try {
-                eval(window.glslEditor.getSuccessfullyCompilingContent());
-            } catch (e) {
-                console.log('Error while trying to parse:' + window.glslEditor.getSuccessfullyCompilingContent());
-            }*/
+                }
+                function draw(){
+				    var cvn = document.getElementsByClassName('ge_canvas')[0];
+				    shader64Str = cvn.toDataURL('image/jpeg');
+                    window.socket.emit('canvas', shader64Str);
+                    window.requestAnimationFrame(draw);
+	            }
+                    draw();
+            }
         });
     </script>
     <script>
@@ -73,9 +80,11 @@
             shaderText = shaderText.replace(/4 iMouse/gm, '2 u_mouse');
             shaderText = shaderText.replace(/iM/gm, 'u_m');
             shaderText = shaderText.replace(/iGlobalTime/gm, 'u_time');
-            window.glslEditor.setContent(shaderText);
+            window.glslEditor.setContent(shaderText); 
         });
+
     </script>
+        
     <link type="text/css" rel="stylesheet" href="glslEditor/build/glslEditor.css">
     <script type="text/javascript" src="glslEditor/build/glslEditor.js"></script>
     <script type="text/javascript">
