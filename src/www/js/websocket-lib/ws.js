@@ -1,5 +1,5 @@
-'use strict'
-var websocket = function(uri) {
+"use strict";
+window.ws = (function (uri) {
     ws = new WebSocket(uri);
     ws.onmessage = function(evt) {
         var messageData = JSON.parse(evt.data);
@@ -16,6 +16,4 @@ var websocket = function(uri) {
     ws.onerror = function(e) {console.log('error: ' + e)};
     ws.onopen = function(evt) {console.log('Socket opened')};
     ws.onclose = function(evt) {console.log('Socket closed')};
-};
-window.ws = websocket;
-// TODO: Refactor using namespaces / Self-executing functions
+});
