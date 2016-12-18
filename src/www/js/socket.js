@@ -1,7 +1,7 @@
 "use strict";
 (function initSocket() { 
     var timer;
-    window.socket = new ws('ws://' + window.location.hostname + ':8088');
+    window.socket = new ws('ws://13.93.86.117:8088');
     window.socket.on('frag', function(evt) {
         $('#code').val(evt.data);
         $('#code').trigger('change', [false]);
