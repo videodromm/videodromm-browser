@@ -1,24 +1,24 @@
 # videodromm-browser
-Shader browser, editor, websocket server (nodejs )
+Shader browser, editor
 Authors: Bruce Lane - Josep Arpí - AzopCorp - Patricio Gonzalez-Vivo
 
 # websocket-server
 
 # Description
-Websocket-server
+browser
 Based on https://github.com/patriciogonzalezvivo/glslEditor
 
 # Usage
 ```
 npm install
 
-on Windows (nodemon error...)
+on Windows
 node index
 on Mac/Linux
 npm start
 ```
 
-Open tab to http://localhost:8080
+Open tab to http://localhost:7070
 
 Shader text is sent to all websocket clients when edited
 
