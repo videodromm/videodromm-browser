@@ -1,0 +1,3 @@
+[submodule "src/www/glslEditor"]
+	path = src/www/glslEditor
+	url = https://github.com/videodromm/glslEditor.git

@@ -8,6 +8,9 @@ Authors: Bruce Lane - Josep Arpí - AzopCorp - Patricio Gonzalez-Vivo
 browser
 Based on https://github.com/patriciogonzalezvivo/glslEditor
 
+# Clone  
+`git clone https://github.com/videodromm/videodromm-browser.git --recursive`  
+
 # Usage
 ```
 npm install
