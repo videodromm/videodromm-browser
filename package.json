@@ -9,7 +9,7 @@
   "dependencies": {
     "babel": "^5.8.29",
     "babel-runtime": "5.8.29",
-    "codemirror": "5.8.0",
+    "codemirror": "5.58.2",
     "express": "^4.14.0",
     "glslCanvas": "^0.0.17",
     "mocha": "^3.1.2",
